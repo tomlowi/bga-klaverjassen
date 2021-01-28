@@ -1,0 +1,548 @@
+/**
+ *------
+ * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
+ * Klaverjassen implementation : © Iwan Tomlow <iwan.tomlow@gmail.com>
+ * Original Credits to the Belote game implementation: © David Bonnin <david.bonnin44@gmail.com>
+ *
+ * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
+ * See http://en.boardgamearena.com/#!doc/Studio for more information.
+ * -----
+ *
+ * klaverjassen.css
+ *
+ * Klaverjassen stylesheet
+ *
+ */
+
+/*
+    This is the CSS stylesheet of your game User Interface.
+    
+    Styles defined on this file will be applied to the HTML elements you define in your
+    HTML template (klaverjassen_klaverjassen.tpl), and to HTML elements you create dynamically
+    (in klaverjassen.js).
+    
+    Usually, you are using CSS to:
+    
+    1°) define the overall layout of your game
+        (ex: place the board on the top left, place player's hand beside, place the deck on the right, ...).
+
+    2°) create your CSS-sprites:
+        All images of your games should be gathered into a small number of image files. Then, using
+        background-image and background-position CSS properties, you create HTML blocks that can 
+        display these images correctly (see example below).
+    
+    3°) ... anything else:
+        It is really easy to add and remove CSS classes dynamically from your Javascript with
+        dojo.addClass and dojo.removeClass. It is also easy to check if an element has a class
+        (dojo.hasClass) or to get all elements with a specific class (dojo.query). This is why,
+        very often, using CSS classes for the logic of your user interface allow you to do complex
+        thing easily.
+        
+        
+     Note: on the production platform, this file will be compressed and comments will be removed.
+           Consequently, don't hesitate to put as many comments as necessary.
+*/
+
+@import url(../../../css/csslayer.css); /* Note: you must not use any @import directive other than this one */
+
+/********* You can start writing your CSS below this line: **********/
+
+
+
+
+@import url(../../../css/csslayer.css);
+
+/** Table layout **/
+
+.whole_table{
+	margin: 0px auto;
+	max-width: 800px;
+	border: 0px solid black;
+}
+
+#playertables {
+    position: relative;
+    width: 550px;
+    /*height: 380px;*/
+	height: 409px;
+	background-image: url('img/green_mat.png');
+    background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.playertablename { 
+    font-weight: bold;
+    text-align: center;
+	font-size: 1em;
+	font-weight: bold;
+    white-space: nowrap;
+	overflow: hidden;
+}
+
+.playertable {
+    position: absolute;
+    text-align: center;
+    width: 130px;
+    height: 130px;
+}
+
+.playertable_N {
+    left: 48.5%;
+    top: 0px;
+    margin-left: -65px; /* half of 130 */
+}
+.playertable_S {
+    left: 48.5%;
+    bottom: 0px;
+    margin-left: -65px; /* half of 130 */
+}
+.playertable_W {
+    left: 10px;
+    top: 48.5%;
+    margin-top: -65px; /* half of 130 */
+}
+.playertable_E {
+    right: 10px;
+    top: 48.5%;
+    margin-top: -65px; /* half of 130 */
+}
+.playertablecard {
+    display: inline-block;
+    position: relative;
+    margin-top: 6px;
+    width: 72px;
+    height: 96px;
+}
+
+.special_cards{
+    float: right;
+    width: 150px;
+    height: 409px;
+    position: relative;
+    border: 0px solid red;
+}
+
+.visibleCard{
+    text-align: center;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    top: 0px;
+}
+.cardToTake{
+    display: inline-block;
+    position: relative;
+    margin-top: 5px;
+    width: 72px;
+    height: 96px;
+}
+
+.gameOptions{
+    text-align: center;
+    width: 130px;
+    height: 40px;
+    position: absolute;
+    bottom: 0px;
+}
+
+.trumpBlock{
+    text-align: center;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    bottom: 75px;
+}
+.trumpColor{
+    display: inline-block;
+    position: relative;
+    margin-top: 5px;
+    width: 100px;
+    height: 96px;
+}
+#trumpReminder {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+    height: 32px;
+    width: 32px;
+}
+.trump_none {
+    background-image: none;
+}
+.trump_spade{
+    background-image: url('img/spade.png');
+}
+.trump_heart {
+    background-image: url('img/heart.png');
+}
+.trump_club {
+    background-image: url('img/club.png');
+}
+.trump_diamond {
+    background-image: url('img/diamond.png');
+}
+
+#dealer_icon {
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-image: url('img/dealer-icon.png');    
+}
+
+#taker_icon {
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url('img/taker-icon.png');    
+}
+
+.clockwise_icon {
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url('img/clockwise.png');    
+}
+
+.counterclockwise_icon {
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url('img/counterclockwise.png');    
+}
+
+#orientation {
+    position: absolute;
+    text-align: center;
+    width: 32px;
+    height: 32px;
+	left:50%;
+	top:50%;
+	margin-left: -16px;
+	margin-top: -16px;
+}
+
+.tricks_icon {
+    display: inline-block;
+    width: 32px;
+    height: 22px;
+    background-image: url('img/tricks-icon.png');    
+}
+
+/* .myHand{
+
+} */
+
+/*** cards on table ***/
+
+.cardontable {
+    position: absolute;
+    width: 72px;
+    height: 96px; 
+}
+
+.cardstyle-0 {
+    background-image: url('img/cards.png'); 
+}
+
+.cardstyle-1 {
+    background-image: url('img/cards-dutch.png') !important; 
+}
+
+.cardvisible {
+    position: absolute;
+    width: 72px;
+    height: 96px;
+    background-image: url('img/cards-trumps.png'); 
+}
+
+
+.spade {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    background-image: url('img/spade.png');
+    background-repeat: no-repeat;
+    background-position: center;    
+}
+
+.heart {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    background-image: url('img/heart.png');
+    background-repeat: no-repeat;
+    background-position: center;    
+}
+
+.club {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    background-image: url('img/club.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.diamond {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    background-image: url('img/diamond.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.no_trumps {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    background-image: url('img/choose-trump.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Icons */
+
+.heart_icon {
+    display: inline-block;
+    vertical-align:middle;
+    width: 16px;
+    height: 16px;
+    background-image: url('img/heart_icon.jpg');
+}
+
+.spade_icon {
+    display: inline-block;
+    vertical-align:middle;
+    width: 16px;
+    height: 16px;
+    background-image: url('img/spade_icon.jpg');
+}
+
+.diamond_icon {
+    display: inline-block;
+    vertical-align:middle;
+    width: 16px;
+    height: 16px;
+    background-image: url('img/diamond_icon.jpg');
+}
+
+.club_icon {
+    display: inline-block;
+    vertical-align:middle;
+    width: 16px;
+    height: 16px;
+    background-image: url('img/club_icon.jpg');
+}
+
+/* Tricks won count indication on player table, Coinche style */
+.playerTables__tricksWon {
+	opacity: 0;
+	margin: 0;
+	position: absolute;
+	width: 110px;
+	height: 22px;
+	transition: opacity 0.5s ease-in;
+}
+
+.playerTables__tricksWon {
+	right: -20px;
+	text-align: left;
+}
+
+.playerTables__tricksWon--notEmpty {
+	opacity: 1;
+}
+
+.playerTables__tricksWonIcon {
+	display: inline-block;
+	vertical-align: middle;
+	width: 25px;
+	height: 22px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-image: url('img/tricks-icon.png');
+}
+
+.playerTables__tricksWonValue {
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: bold;
+	font-size: 0.8rem;
+	line-height: 22px;
+}
+
+.playerTables__roemScored {
+    opacity: 0;
+    position: absolute;
+    right: 15px;
+    text-align: left;
+    height: 22px;
+	transition: opacity 0.5s ease-in;
+}
+
+.playerTables__roemScored--notEmpty {
+    opacity: 1;
+}
+
+.playerTables__roemScoredValue {
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: bold;
+	font-size: 0.8rem;
+    line-height: 22px;
+    color: blue;
+}
+
+.cp_board {
+    opacity: 0;
+}
+
+/* .playertable_N .playerTables__tricksWon {
+	top: 0;
+	left: -35px;
+	text-align: left;
+}
+
+.playertable_S .playerTables__tricksWon {
+	bottom: 0;
+	left: -35px;
+	text-align: left;
+}
+
+.playertable_W .playerTables__tricksWon {
+	top: 0%;
+	left: 0%;
+	text-align: left;
+}
+
+.playertable_E .playerTables__tricksWon {
+	top: 0%;
+	right: 0%;
+	text-align: right;
+} */
+
+.infotitle {
+    color: #505050;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.infobutton {
+    padding: 3px 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: #505050;
+    font-weight: normal;
+    font-size: 12px;
+    text-decoration: none;
+    text-shadow: none;
+    vertical-align: middle;
+    cursor: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
+    border-radius: 6px;
+}
+
+.quickrefBlock {
+    float: left;
+    padding-left: 5px;
+    max-width: 250px;
+}
+
+table.tableScore {    
+    border-collapse: collapse;
+    margin: 0px 0px 0px 0px;
+}
+
+table.tableScore th {
+    border-bottom: 1px solid Olive;
+    padding: 5px;
+    background-color: #505050;
+    color: white;
+    font-size: 14px;
+    height: 40px;
+    max-width: 80px;
+}
+
+table.tableScore td {
+    border-bottom: 1px solid Olive;
+    padding: 5px;
+    color: #505050;
+    font-size: 12px;
+    text-align: center;
+}
+
+.highlight {
+    font-weight: bold;
+}
+
+.quickRefNote {
+    clear:both;
+    padding-top: 3px;
+    color: #505050;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.playerTables__bubble {
+	opacity: 0;
+	background: white;
+	border-radius: 18px/15px;
+	top: 100%;
+	color: #000;
+	font-weight: normal;
+	left: -30px;
+	padding: 5px 15px;
+	position: absolute;
+	z-index: 100;
+	box-shadow: rgba(0, 0, 0, 0.5) 2px 2px 7px;
+	font-size: 14px;
+	transition: opacity 0.5s ease-in;
+	min-width: 40px;
+	pointer-events: none;
+}
+.playerTables__bubble:after {
+	border-color: #ffffff transparent;
+	border-style: solid;
+	border-width: 0 15px 15px;
+	top: -10px;
+	content: '';
+	display: block;
+	left: 30px;
+	position: absolute;
+	width: 0;
+}
+.playerTables__bubble:hover {
+	opacity: 0.3;
+}
+.playerTables__bubble--visible {
+	opacity: 1;
+	display: block;
+	pointer-events: all;
+}
+
+/* make it not go up except player 0 */
+.playertable_0 .playerTables__bubble {
+	bottom: 100%;
+	top: unset;
+}
+.playertable_0 .playerTables__bubble:after {
+	border-width: 15px 15px 0;
+	bottom: -10px;
+	top: unset;
+}
