@@ -60,6 +60,7 @@ class Klaverjassen extends Table
 			"forcedOverTrump" => 110,	// 1 = Rotterdams, 2 = Amsterdams
 			"trumpSelection" => 120,	// 1 = Classic draw pile, 2 = Mandatory play
 			"includeJokers" => 130,	// 1 = Yes, 2 = No, only for Classic draw pile
+			"lastCardAutomatic" => 140,	// 0 = No, 1 = Yes
 
 		));
 		$this->cards = self::getNew("module.common.deck");
@@ -647,9 +648,23 @@ class Klaverjassen extends Table
 
 	// Play a card from player hand
 
-	function playCard($card_id)
+	public function playCard($card_id)
 	{
 		self::checkAction("playCard");
+		$this->_playCard($card_id);
+	}
+
+	private function playCardAutomatic($card_id)
+	{
+		// cannot checkAction here,
+		// although the active player is already set correctly in stPlayerTurn,
+		// the current player would still be the one that played the last card
+		// on the previous before last trick, so check would fail
+		$this->_playCard($card_id);
+	}
+
+	private function _playCard($card_id)
+	{
 		$player_id = self::getActivePlayerId();
 
 		// Get all cards in player hand
@@ -1134,6 +1149,27 @@ class Klaverjassen extends Table
 		self::setGameStateValue('trickRoem', 0);
 
 		$this->gamestate->nextState();
+	}
+
+	function stPlayerTurn()
+	{
+		// normally, nothing needs to happen here:
+		// just go to client and wait for player to select a card to play
+
+		// but if this option is selected, and players have only 1 card left in hand
+		// => play it automatically to speed up the last trick
+		$lastCardAutomatic = self::getGameStateValue('lastCardAutomatic') == 1;
+		if (!$lastCardAutomatic) return;
+
+		$player_id = self::getActivePlayerId();
+
+		$nrCardsInHand = $this->cards->countCardsInLocation('hand', $player_id);
+		if ($nrCardsInHand == 1) 
+		{
+			$cardsInHand = $this->cards->getCardsInLocation('hand', $player_id);
+			$card_id = array_keys($cardsInHand)[0];
+			$this->playCardAutomatic($card_id);
+		}
 	}
 
 	function stNextPlayer()
