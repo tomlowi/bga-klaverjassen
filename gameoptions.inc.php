@@ -97,7 +97,24 @@ $game_options = array(
                 'beta' => false),
 		),
 		'default' => 1
-	),
+    ),
+    
+    140 => [
+        'name' => totranslate( 'Last card' ), 
+        'values' => [
+            0 => [ 
+                'name' => totranslate( 'Default' ),
+                'description' => totranslate('All cards are played explicitly'),
+                'beta' => false
+            ],
+            1 => [ 
+                'name' => totranslate( 'Automatic' ),
+                'description' => totranslate('Last hand card is played automatically'),
+                'tmdisplay' => totranslate('Last hand card automatic'),
+                'beta' => false
+            ]
+        ]
+    ],
 
     //  beta=true => this option is in beta version right now.
     //  nobeginner=true  =>  this option is not recommended for beginners
