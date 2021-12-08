@@ -75,6 +75,9 @@ $gameinfos = array(
 // Is this game cooperative (all players wins together or loose together)
     'is_coop' => 0, 
 
+// If in the game, all losers are equal (no score to rank them or explicit in the rules that losers are not ranked between them), set this to true
+// The game end result will display "Winner" for the winning players and "Loser" for all other players
+	'losers_not_ranked' => true,
 
 // Complexity of the game, from 0 (extremely simple) to 5 (extremely complex)
     'complexity' => 2,    
