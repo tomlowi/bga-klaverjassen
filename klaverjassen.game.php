@@ -787,7 +787,7 @@ class Klaverjassen extends Table
 					&& $currentCard['type'] == $currentTrumpColor
 					&& $currentWinningCard > 0 && $currentWinningCard['type'] == $currentTrumpColor
 					&& !($this->isCardStronger($currentCard['type_arg'], $currentWinningCard['type_arg'], true))
-					&& $bAtLeastOneCardNotTrump) {
+					&& ($bAtLeastOneCardNotTrump || $bAtLeastOneCardTrumpOfGreaterValue)) {
 						throw new BgaUserException(sprintf(self::_("You are not allowed to undertrump as long as you have other cards") ));
 				}
 			}
