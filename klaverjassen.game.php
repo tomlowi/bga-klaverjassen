@@ -1,4 +1,3 @@
-
 <?php
 /**
  *------
@@ -173,7 +172,7 @@ class Klaverjassen extends Table
 			$values[] = "('" . $player_id . "','" . $player_no . "','$start_points','$color','" . $player['player_canal'] . "','" . addslashes($player['player_name']) . "','" . addslashes($player['player_avatar']) . "')";
 		}
 
-		$sql.= implode($values, ',');
+		$sql.= implode(',', $values);
 		self::DbQuery($sql);
 		self::reloadPlayersBasicInfos();
 		/************ Start the game initialization *****/
@@ -350,15 +349,15 @@ class Klaverjassen extends Table
 		} else {
 			$maximumScore = self::getUniqueValueFromDb("SELECT MAX( player_score ) FROM player");
 			$minimumScore = self::getUniqueValueFromDb("SELECT MIN( player_score ) FROM player");
-			
+
 			if ($maximumScore >= $end) {
 				return 100;
 			}
-	
+
 			if ($maximumScore <= 0) {
 				return 0;
 			}
-	
+
 			$n = 2 * ($end - $maximumScore);
 			$res = (100 * ($maximumScore + $minimumScore)) / ($n + $maximumScore + $minimumScore);
 		}

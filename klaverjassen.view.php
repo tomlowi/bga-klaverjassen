@@ -120,7 +120,7 @@ class view_klaverjassen_klaverjassen extends game_view
 
 		// translate game labels
 		$this->set_translation_labels();
-		
+
 
 		/*********** Do not change anything below this line  ************/
 	}
