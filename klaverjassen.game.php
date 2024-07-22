@@ -28,7 +28,7 @@ define("TEAM_RANDOM", 4); // At random
 class Klaverjassen extends Table
 
 {
-	function Klaverjassen()
+	function __construct()
 	{
 
 		// Your global variables labels:
