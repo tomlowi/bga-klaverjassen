@@ -873,8 +873,10 @@ define([
             },  
             notif_scoreTableDetails: function(notif) {
                 // handResult will be transformed into clickable link in the game log
-                // display here should use the original result table
-                this.showResultDialog(notif.args.originalHandResult);
+                // display here should use the original result table (originalHandResult)
+                // But: after BGA update 2025/09/10, this notification handler just gets
+                // the original args, not the adapted args from format_string_recursive!
+                this.showResultDialog(notif.args.handResult);
             },
             showResultDialog: function (args) {
                 this.scoringDialog = this.displayTableWindow(
